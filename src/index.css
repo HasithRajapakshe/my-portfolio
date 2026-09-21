@@ -1,0 +1,190 @@
+@import "tailwindcss";
+
+/* ─── Design Tokens ─── */
+@theme {
+  --color-bg: #06070A;
+  --color-surface: #0D1017;
+  --color-elevated: #121722;
+  --color-primary: #F7F8FA;
+  --color-secondary: #9CA3AF;
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-accent: #6366f1;
+  --color-accent-light: #818cf8;
+  --color-cyan: #06b6d4;
+  --color-cyan-light: #22d3ee;
+
+  --font-heading: "Space Grotesk", sans-serif;
+  --font-body: "Inter", sans-serif;
+}
+
+/* ─── Base Styles ─── */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-bg);
+  color: var(--color-secondary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--color-primary);
+}
+
+::selection {
+  background-color: rgba(99, 102, 241, 0.3);
+  color: #fff;
+}
+
+/* ─── Custom Scrollbar ─── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(99, 102, 241, 0.4);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(99, 102, 241, 0.6);
+}
+
+/* ─── Focus Styles ─── */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ─── Gradient Text Utility ─── */
+.gradient-text {
+  background: linear-gradient(135deg, var(--color-accent-light), var(--color-cyan));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Section Styles ─── */
+.section-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .section-container {
+    padding: 0 2rem;
+  }
+}
+
+/* ─── Card Base ─── */
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.card:hover {
+  border-color: rgba(99, 102, 241, 0.2);
+  box-shadow: 0 0 30px rgba(99, 102, 241, 0.06);
+}
+
+/* ─── Glass Effect ─── */
+.glass {
+  background: rgba(13, 16, 23, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--color-border);
+}
+
+/* ─── Badge ─── */
+.tech-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--color-secondary);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--color-border);
+  border-radius: 9999px;
+  transition: border-color 0.2s ease, color 0.2s ease;
+  white-space: nowrap;
+}
+
+.tech-badge:hover {
+  border-color: rgba(99, 102, 241, 0.3);
+  color: var(--color-accent-light);
+}
+
+/* ─── Body Scroll Lock ─── */
+body.menu-open {
+  overflow: hidden;
+}
+
+/* ─── Project Image Fallback ─── */
+.project-fallback {
+  background: linear-gradient(135deg, var(--color-surface) 0%, var(--color-elevated) 100%);
+  position: relative;
+  overflow: hidden;
+}
+.project-fallback::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 120px;
+  height: 120px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(
+    circle,
+    rgba(99, 102, 241, 0.15) 0%,
+    transparent 70%
+  );
+  border-radius: 50%;
+}
+.project-fallback::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 12px,
+    rgba(255, 255, 255, 0.015) 12px,
+    rgba(255, 255, 255, 0.015) 13px
+  );
+}
+
+/* ─── Skill Category Icons ─── */
+.skill-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.625rem;
+  flex-shrink: 0;
+}
